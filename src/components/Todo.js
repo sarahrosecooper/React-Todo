@@ -1,10 +1,16 @@
 import React from "react";
 
 const Todo = (props) => {
+  const handleClick = (e) => {
+    e.preventDefault();
+    props.toggleItem(props.item.id);
+  };
   return (
-    <div>
-      This is the Todo component that takes in the todo data and displays the
-      task to the screen.
+    <div
+      onClick={handleClick}
+      className={`item${props.item.completed ? " completed" : ""}`}
+    >
+      <p>{props.item.task}</p>
     </div>
   );
 };

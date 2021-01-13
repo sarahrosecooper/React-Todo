@@ -1,15 +1,37 @@
 import React from "react";
 
-const TodoForm = (props) => {
-  return (
-    <div>
-      This is the TodoForm Component that will hold your input field and your
-      Add Todo and Clear Completed buttons. Your input field should take in user
-      input, and allow a user to press Enter or click on the Submit Button to
-      add a todo to your list. Once a todo is submitted, the Todo List should
-      re-render and show the added todo.
-    </div>
-  );
-};
+class TodoForm extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      itemName: ""
+    };
+  }
+  handleChanges = (e) => {
+    this.setState({
+      itemName: e.target.value
+    });
+  };
+
+  // handling submitting the form
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.addItem(this.state.itemName);
+  };
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          onChange={this.handleChanges}
+          value={this.state.itemName}
+          type="text"
+          name="item"
+        />
+        <button>Add</button>
+      </form>
+    );
+  }
+}
 
 export default TodoForm;

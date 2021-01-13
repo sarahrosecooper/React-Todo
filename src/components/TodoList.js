@@ -2,12 +2,15 @@
 // feel free to change this component.js into TodoList.js
 
 import React from "react";
+import Todo from "./Todo";
 
 const TodoList = (props) => {
   return (
-    <div>
-      This is the Todo component that receives your Todos array and iterates
-      over the list generating a new Todo for each element in the array.
+    <div className="shopping-list">
+      {props.toDoState.map((item) => (
+        <Todo toggleItem={props.toggleItem} key={item.id} item={item} />
+      ))}
+      <button className="clear-btn">Clear completed</button>
     </div>
   );
 };

@@ -78,6 +78,8 @@ class App extends React.Component {
       <div className="App">
         <div className="header">
           <h2>Daily Todo!</h2>
+        </div>
+        <div>
           <TodoForm addItem={this.addItem} />
         </div>
         <TodoList

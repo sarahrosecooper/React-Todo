@@ -53,13 +53,21 @@ class App extends React.Component {
   toggleItem = (itemId) => {
     this.setState({
       toDoState: this.state.toDoState.map((item) => {
-        if (item.id === item.Id) {
+        if (item.id === itemId) {
           return {
             ...item,
-            completed: !completed
+            completed: !item.completed
           };
         }
         return item;
+      })
+    });
+  };
+
+  clearCompleted = () => {
+    this.setState({
+      toDoState: this.state.toDoState.filter((item) => {
+        return !item.completed;
       })
     });
   };
@@ -67,10 +75,13 @@ class App extends React.Component {
   // this component is going to take care of state, and any change handlers you need to work with your state
   render() {
     return (
-      <div>
-        <h2>Daily Todo!</h2>
-        <TodoForm addItem={this.addItem} />
+      <div className="App">
+        <div className="header">
+          <h2>Daily Todo!</h2>
+          <TodoForm addItem={this.addItem} />
+        </div>
         <TodoList
+          clearCompleted={this.clearCompleted}
           toggleItem={this.toggleItem}
           toDoState={this.state.toDoState}
         />
